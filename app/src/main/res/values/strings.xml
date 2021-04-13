@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">breweries</string>
+    <string name="no_website">No website.</string>
 </resources>
