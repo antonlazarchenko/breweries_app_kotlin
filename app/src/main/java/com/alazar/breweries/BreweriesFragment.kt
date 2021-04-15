@@ -1,11 +1,14 @@
 package com.alazar.breweries
 
+import android.content.res.Resources
+import android.graphics.Outline
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewOutlineProvider
 import android.widget.Toast
 import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
@@ -14,15 +17,16 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alazar.breweries.api.ApiHelper
 import com.alazar.breweries.api.ApiService
-import com.alazar.breweries.data.BreweryAdapter
-import com.alazar.breweries.data.RecyclerViewClickListener
 import com.alazar.breweries.databinding.FragmentBreweriesBinding
 import com.alazar.breweries.di.ViewModelFactory
 import com.alazar.breweries.di.qualifiers.ViewModelInjection
+import com.alazar.breweries.recyclerview.BreweryAdapter
+import com.alazar.breweries.recyclerview.RecyclerViewClickListener
 import com.alazar.breweries.utils.Status
 import com.alazar.breweries.viewmodel.BreweriesVM
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
+
 
 class BreweriesFragment : DaggerFragment(), RecyclerViewClickListener {
 
@@ -103,9 +107,14 @@ class BreweriesFragment : DaggerFragment(), RecyclerViewClickListener {
             )
 
             val params: CustomTabColorSchemeParams = CustomTabColorSchemeParams.Builder()
-                .setNavigationBarColor(ContextCompat.getColor(requireActivity(), R.color.purple_700))
-                .setToolbarColor(ContextCompat.getColor(requireActivity(), R.color.purple_700))
-                .setSecondaryToolbarColor(ContextCompat.getColor(requireActivity(), R.color.purple_500))
+                .setNavigationBarColor(ContextCompat.getColor(requireActivity(), R.color.green_700))
+                .setToolbarColor(ContextCompat.getColor(requireActivity(), R.color.green_700))
+                .setSecondaryToolbarColor(
+                    ContextCompat.getColor(
+                        requireActivity(),
+                        R.color.green_700
+                    )
+                )
                 .build()
             builder.setColorSchemeParams(CustomTabsIntent.COLOR_SCHEME_LIGHT, params)
 

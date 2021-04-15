@@ -1,4 +1,4 @@
-package com.alazar.breweries.data
+package com.alazar.breweries.recyclerview
 
 import android.view.View
 

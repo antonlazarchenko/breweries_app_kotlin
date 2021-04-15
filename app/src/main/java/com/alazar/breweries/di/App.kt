@@ -14,12 +14,22 @@ class App : Application(), HasAndroidInjector {
     override fun onCreate() {
         super.onCreate()
 
-        DaggerAppComponent
-            .builder()
-            .application(this)
-            .build()
-            .inject(this)
+        getComponent().inject(this)
 
+    }
+
+    companion object {
+        lateinit var appComponent: AppComponent
+
+        fun getComponent(): AppComponent {
+            if (!::appComponent.isInitialized) {
+                appComponent = DaggerAppComponent
+                    .builder()
+                    .application(this)
+                    .build()
+            }
+            return appComponent
+        }
     }
 
     override fun androidInjector(): AndroidInjector<Any> = activityInjector

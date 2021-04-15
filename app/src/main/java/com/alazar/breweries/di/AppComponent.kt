@@ -1,5 +1,6 @@
 package com.alazar.breweries.di
 
+import com.alazar.breweries.base.NetworkProvider
 import com.alazar.breweries.di.modules.ActivityInjectorsModule
 import com.alazar.breweries.di.modules.FragmentInjectorsModule
 import com.alazar.breweries.di.modules.AppModule
@@ -21,11 +22,11 @@ interface AppComponent {
     @Component.Builder
     interface Builder {
         @BindsInstance
-        fun application(application: App): Builder
+        fun application(application: App.Companion): Builder
 
         fun build(): AppComponent
     }
 
     fun inject(app: App)
-
+    fun inject(networkProvider: NetworkProvider)
 }

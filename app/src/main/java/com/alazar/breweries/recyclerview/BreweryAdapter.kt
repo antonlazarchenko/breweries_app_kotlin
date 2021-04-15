@@ -1,11 +1,13 @@
-package com.alazar.breweries.data
+package com.alazar.breweries.recyclerview
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.alazar.breweries.R
+import com.alazar.breweries.data.Brewery
 import java.util.*
 
 class BreweryAdapter(itemListener: RecyclerViewClickListener) :
@@ -37,33 +39,45 @@ class BreweryAdapter(itemListener: RecyclerViewClickListener) :
         holder.website.text = items[position].website_url?.trim()
 
 
-        val list = listOf(
-//            holder.name,
-            holder.phone,
-            holder.country,
-            holder.city,
-            holder.website)
-        checkFieldsVisibility(list)
+        checkFieldsVisibility(
+            mapOf(
+                holder.phone to holder.phoneGroup,
+                holder.country to holder.countryGroup,
+                holder.city to holder.cityGroup,
+                holder.website to holder.websiteGroup
+            )
+        )
     }
 
     override fun getItemCount(): Int {
         return items.size
     }
 
-    private fun checkFieldsVisibility(listView: List<TextView>) {
-        for (item in listView) {
-            if (item.text.isNotEmpty())
-                item.visibility = View.VISIBLE
+    private fun checkFieldsVisibility(mapView: Map<TextView, LinearLayout>) {
+        for (item in mapView) {
+            if (item.key.text.isNotEmpty()) {
+                item.value.visibility = View.VISIBLE
+            } else {
+                item.value.visibility = View.GONE
+            }
         }
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view),
         View.OnClickListener {
         val name: TextView = view.findViewById(R.id.nameTxt)
+
         val phone: TextView = view.findViewById(R.id.phoneTxt)
+        val phoneGroup: LinearLayout = view.findViewById(R.id.phoneGroup)
+
         val country: TextView = view.findViewById(R.id.countryTxt)
+        val countryGroup: LinearLayout = view.findViewById(R.id.countryGroup)
+
         val city: TextView = view.findViewById(R.id.cityTxt)
+        val cityGroup: LinearLayout = view.findViewById(R.id.cityGroup)
+
         val website: TextView = view.findViewById(R.id.websiteTxt)
+        val websiteGroup: LinearLayout = view.findViewById(R.id.websiteGroup)
 
         override fun onClick(v: View) {
             itemListener?.recyclerViewListClicked(website.text.toString(), v, this.layoutPosition)

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="group_layout_margin">4dp</dimen>
+    <dimen name="text_margin">3dp</dimen>
+    <dimen name="text_size_regular">16sp</dimen>
+</resources>

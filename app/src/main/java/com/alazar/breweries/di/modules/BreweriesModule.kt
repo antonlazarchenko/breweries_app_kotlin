@@ -25,32 +25,4 @@ class BreweriesModule {
         fragment: BreweriesFragment,
         viewModelProvider: InjectionViewModelProvider<BreweriesVM>
     ): BreweriesVM = viewModelProvider.get(fragment)
-
-
-
-    @Provides
-    internal fun provideApiService(retrofit: Retrofit): ApiService {
-        return retrofit.create(ApiService::class.java)
-    }
-
-    @Provides
-    @Reusable
-    internal fun provideRetrofitInterface(okHttpClient: OkHttpClient): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl("https://api.openbrewerydb.org/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(okHttpClient)
-            .build()
-    }
-
-    @Provides
-    fun provideOkhttpClient(): OkHttpClient {
-        val client = OkHttpClient.Builder()
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
-        client.addInterceptor(interceptor)
-        client.connectTimeout(20, TimeUnit.SECONDS)
-        client.readTimeout(20, TimeUnit.SECONDS)
-        return client.build()
-    }
 }

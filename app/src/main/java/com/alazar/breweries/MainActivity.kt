@@ -1,10 +1,12 @@
 package com.alazar.breweries
 
+import android.Manifest
+import android.os.Build
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import com.alazar.breweries.base.BaseActivity
 import com.alazar.breweries.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -20,11 +22,15 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .add(binding.frameLayout.id, BreweriesFragment())
             .commit()
-
     }
 
 
     private fun requirePermissions() {
-        //TODO
+        requestMultiplePermissions.launch(
+            arrayOf(
+                Manifest.permission.INTERNET,
+                Manifest.permission.ACCESS_NETWORK_STATE,
+            )
+        )
     }
 }
