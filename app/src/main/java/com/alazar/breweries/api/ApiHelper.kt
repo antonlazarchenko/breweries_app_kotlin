@@ -5,5 +5,5 @@ import javax.inject.Inject
 class ApiHelper @Inject constructor(private val apiService: ApiService) {
     suspend fun getAll() = apiService.getAll()
 
-    suspend fun searchByName() = apiService.searchByName()
+    suspend fun searchByName(name: String) = apiService.searchByName(name)
 }

@@ -1,14 +1,13 @@
 package com.alazar.breweries.api
 
 import com.alazar.breweries.data.Brewery
-import kotlinx.coroutines.Deferred
-import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface ApiService {
     @GET("breweries")
     suspend fun getAll(): List<Brewery>
 
-    @GET("breweries?by_name={query}")
-    suspend fun searchByName(): List<Brewery>
+    @GET("breweries")
+    suspend fun searchByName(@Query("by_name") name: String): List<Brewery>
 }

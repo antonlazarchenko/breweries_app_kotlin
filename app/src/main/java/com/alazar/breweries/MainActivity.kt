@@ -1,7 +1,6 @@
 package com.alazar.breweries
 
 import android.Manifest
-import android.os.Build
 import android.os.Bundle
 import com.alazar.breweries.base.BaseActivity
 import com.alazar.breweries.databinding.ActivityMainBinding

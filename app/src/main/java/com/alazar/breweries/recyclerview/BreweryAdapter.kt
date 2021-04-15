@@ -22,6 +22,7 @@ class BreweryAdapter(itemListener: RecyclerViewClickListener) :
     }
 
     fun setItems(news: List<Brewery>) {
+        items.clear()
         this.items.addAll(news)
         notifyDataSetChanged()
     }
